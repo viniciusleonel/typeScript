@@ -31,3 +31,48 @@ console.log(hoje.toString());
 console.log(hoje.toDateString());
 
 
+
+// Decorators
+function ExibirNome(target: any) {
+    console.log(target);    
+}
+// faz com que a função seja chamada usando o @nomeDaFunção
+@ExibirNome
+class Nina {}
+
+// Attribute decorator
+function minLength(length: number){
+    return (target: any, key: string) => {
+        let _value = target[key];
+
+        const getter = () => _value;
+        const setter = (value: string) => {
+            if (value.length < length){
+                throw new Error(`Tamanho menor do que ${length}`);
+            } else {
+                _value = value;
+            }
+        };
+        Object.defineProperty(target, key, {
+            get: getter,
+            set: setter,
+        });
+    };
+}
+
+class Nath {
+    @minLength(3)
+    name: string;
+
+    constructor(name:string){
+        this.name = name;
+    }
+}
+// Faz com que o valor recebido em não possa ser menor do que 3 como especificado em @minLength
+const nathalia = new Nath("oi");
+console.log(nathalia.name);
+
+
+
+
+
