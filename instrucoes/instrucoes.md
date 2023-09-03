@@ -9,7 +9,10 @@
 #### Para transpilar um arquivo TS para JS:
 - npx tsc ./arquivo => ( ou configurar o arquivo tsconfig para deixar um diretório de transpilação de origem e destino salvos)
 
-#### Linha 7 package.json => "start": "npx tsc && node build/index.js", => coloca no script para executar o comando npx tsc e node ( mostrar na tela ) ao mesmo tempo usando o comando => npm run start
+Linha 7 package.json dentro de "scripts"=> "start": "npx tsc && node build/index.js", => coloca no script para executar o comando npx tsc e node ( mostrar na tela ) ao mesmo tempo usando o comando => npm run start
+
+### Para transpilar um arquivo TS sem precisar criar uma build usando um servidor local:
+- npm install ts-node-dev -D => Linha 7 package.json dentro de "scripts"=> "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts", => npm run start:dev
 
 ### Criando um arquivo de configuração para o TS:
  - npx tsc --init => Cria arquivo => tsconfig.json
